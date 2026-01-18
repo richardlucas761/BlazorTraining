@@ -3,4 +3,8 @@
     <File Path="../README.md" />
   </Folder>
   <Project Path="BlazorWebAppMovies/BlazorWebAppMovies.csproj" />
+  <Project Path="MoviesDB/MoviesDB.sqlproj" Id="c31e9250-885e-40cf-83a3-1d3d91e98bf0">
+    <Build />
+    <Deploy />
+  </Project>
 </Solution>

@@ -8,12 +8,14 @@ namespace BlazorWebAppMovies.Models;
 /// </summary>
 public class Movie
 {
+    [Key]
     /// <summary>
     /// Unique identifier of this Movie.
     /// </summary>
     /// <remarks>This was 'Id' in the sample code but an identifier that includes the class / table name is preferable.</remarks>
     public int MovieId { get; set; }
 
+    [MaxLength(255)]
     /// <summary>
     /// Title of the Movie.
     /// </summary>
@@ -25,6 +27,7 @@ public class Movie
     /// </summary>
     public DateOnly ReleaseDate { get; set; }
 
+    [MaxLength(50)]
     /// <summary>
     /// Genre of the Movie.
     /// </summary>
