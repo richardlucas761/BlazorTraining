@@ -1,0 +1,89 @@
+﻿@page "/weather"
+@attribute [StreamRendering]
+
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+
+<p>This component demonstrates showing data, data is randomly generated and the summaries aren't appropriate to the temperatures!</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th aria-label="Temperature in Celsius">Temp. (C)</th>
+                <th aria-label="Temperature in Fahrenheit">Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(500);
+
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy",
+            "Hot", "Sweltering", "Scorching" };
+        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        {
+            Date = startDate.AddDays(index),
+            TemperatureC = (sbyte)Random.Shared.Next(-20, 55),
+            Summary = summaries[Random.Shared.Next(summaries.Length)]
+        }).ToArray();
+    }
+
+    /// <summary>
+    /// Information about a weather forecast.
+    /// </summary>
+    private sealed class WeatherForecast
+    {
+        /// <summary>
+        /// Date of the forecast.
+        /// </summary>
+        public DateOnly Date { get; set; }
+
+        /// <summary>
+        /// Temperature in degrees C.
+        /// </summary>
+        /// <remarks>The sample code had this set as integer and a temperature range of -2,147,483,648 to 2,147,483,647
+        /// seems ridiculous!</remarks>
+        public sbyte TemperatureC { get; set; }
+
+        /// <summary>
+        /// Text description of the summary of the forecast.
+        /// </summary>
+        /// <remarks>The sample code had this as a nullable string but it's always set to a value, string seems
+        /// better with a default specified.</remarks>
+        public string Summary { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Temperature in degrees (F).
+        /// </summary>
+        /// <remarks>The sample code had this set as integer and a temperature range of -2,147,483,648 to 2,147,483,647
+        /// seems ridiculous!</remarks>
+        public short TemperatureF => (short)(32 + (TemperatureC / 0.5556));
+    }
+}
