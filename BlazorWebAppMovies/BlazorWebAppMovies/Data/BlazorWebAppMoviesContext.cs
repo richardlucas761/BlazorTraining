@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using BlazorWebAppMovies.Models;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace BlazorWebAppMovies.Data
 {
-    public class BlazorWebAppMoviesContext : DbContext
+    /// <summary>
+    /// Database context.
+    /// </summary>
+    /// <param name="options"></param>
+    public class BlazorWebAppMoviesContext(DbContextOptions<BlazorWebAppMoviesContext> options) : DbContext(options)
     {
-        public BlazorWebAppMoviesContext (DbContextOptions<BlazorWebAppMoviesContext> options)
-            : base(options)
-        {
-        }
-
-        public DbSet<BlazorWebAppMovies.Models.Movie> Movie { get; set; } = default!;
+        /// <summary>
+        /// A data set for Movies.
+        /// </summary>
+        public DbSet<Models.Movie> Movie { get; set; } = default!;
     }
 }
