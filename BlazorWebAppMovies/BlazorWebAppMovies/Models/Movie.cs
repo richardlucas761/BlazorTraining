@@ -15,7 +15,9 @@ public class Movie
     /// <remarks>This was 'Id' in the sample code but an identifier that includes the class / table name is preferable.</remarks>
     public int MovieId { get; set; }
 
+    [Required]
     [MaxLength(255)]
+    [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$")]
     /// <summary>
     /// Title of the Movie.
     /// </summary>
@@ -27,7 +29,9 @@ public class Movie
     /// </summary>
     public DateOnly ReleaseDate { get; set; }
 
+    [Required]
     [MaxLength(50)]
+    [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$")]
     /// <summary>
     /// Genre of the Movie.
     /// </summary>

@@ -142,6 +142,34 @@ IMDB suggests the longest Movie title is around 200 characters.
 
 The Sonar Qube VS Extension reminds us this is bad practice so this was corrected.
 
+## Part 5 - Add validation
+
+https://learn.microsoft.com/en-gb/aspnet/core/blazor/tutorials/movie-database-app/part-5?view=aspnetcore-10.0&pivots=vs
+
+Some of the validations suggested here were already added to the Movie model in earlier commits.
+
+### Odd choices for validation?
+
+Pedantic but ```MinimumLength = 3``` is an odd choice when there are movies whose name is a single letter, these could not be stored by this application.
+
+If we only support these characters then the RegEx of ```[RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$")]``` seems reasonable, but why only apply this to the Genre property, why not the Title too?
+
+Applying the same RegEx to the Title does stop us from storing the π movie by Darren Aronofsky but stops HTML characters and script injection attempts.
+
+```
+public class Movie
+{
+    [Required]
+    [StringLength(60, MinimumLength = 3)]
+    public string? Title { get; set; }
+
+    [Required]
+    [StringLength(30)]
+    [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$")]
+    public string? Genre { get; set; }
+}
+```
+
 ## TODO
 
 Validation of the Movie at both the model and database level: 
