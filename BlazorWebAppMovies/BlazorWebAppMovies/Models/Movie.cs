@@ -17,7 +17,6 @@ public class Movie
 
     [Required]
     [MaxLength(255)]
-    [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$")]
     /// <summary>
     /// Title of the Movie.
     /// </summary>
@@ -45,4 +44,8 @@ public class Movie
     [Column(TypeName = "decimal(18, 2)")]
     [Range(0, double.MaxValue, ErrorMessage = "Value should be greater than or equal to 0")]
     public decimal Price { get; set; }
+
+    [Required]
+    [RegularExpression(@"^(G|PG|PG-13|R|NC-17)$")]
+    public string Rating { get; set; } = string.Empty;
 }

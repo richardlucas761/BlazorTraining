@@ -5,6 +5,7 @@
     [ReleaseDate]   DATE                NOT NULL, 
     [Genre]         NVARCHAR(50)        NOT NULL, 
     [Price]         DECIMAL(18, 2)      NOT NULL,
+    [Rating]        NVARCHAR(5)         NOT NULL, 
     CONSTRAINT [PK_Movie] PRIMARY KEY CLUSTERED ([MovieId])
 )
 
@@ -53,3 +54,12 @@ EXEC sp_addextendedproperty @name = N'MS_Description',
     @level1name = N'Movie',
     @level2type = N'COLUMN',
     @level2name = N'Price'
+GO
+EXEC sp_addextendedproperty @name = N'MS_Description',
+    @value = N'The Motion Picture Association rating for this film',
+    @level0type = N'SCHEMA',
+    @level0name = N'dbo',
+    @level1type = N'TABLE',
+    @level1name = N'Movie',
+    @level2type = N'COLUMN',
+    @level2name = N'Rating'

@@ -39,6 +39,7 @@ public static class SeedData
                 ReleaseDate = new DateOnly(1979, 4, 12),
                 Genre = SciFiGenre,
                 Price = 2.51M,
+                Rating = "R"
             },
             new Movie
             {
@@ -46,6 +47,7 @@ public static class SeedData
                 ReleaseDate = new DateOnly(1981, 12, 24),
                 Genre = SciFiGenre,
                 Price = 2.78M,
+                Rating = "R"
             },
             new Movie
             {
@@ -53,6 +55,7 @@ public static class SeedData
                 ReleaseDate = new DateOnly(1985, 7, 10),
                 Genre = SciFiGenre,
                 Price = 3.55M,
+                Rating = "PG-13"
             },
             new Movie
             {
@@ -60,6 +63,7 @@ public static class SeedData
                 ReleaseDate = new DateOnly(2015, 5, 15),
                 Genre = SciFiGenre,
                 Price = 8.43M,
+                Rating = "R"
             },
             new Movie
             {
@@ -67,6 +71,7 @@ public static class SeedData
                 ReleaseDate = new DateOnly(2024, 5, 24),
                 Genre = SciFiGenre,
                 Price = 13.49M,
+                Rating = "R"
             });
 
         context.SaveChanges();

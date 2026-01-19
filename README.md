@@ -184,14 +184,57 @@ A search of:
 
 ```;truncate table movie;```
 
+## Part 7 - Add a new field
+
+https://learn.microsoft.com/en-gb/aspnet/core/blazor/tutorials/movie-database-app/part-7?view=aspnetcore-10.0&pivots=vs
+
+### Database Project aborts due to existing data
+
+Because I'm not using an EF Migration here but a SQL Database Project then adding the new "Rating" column and publishing the database gives this error.
+
+```The schema update is terminating because data loss might occur.```
+
+I could work round this by adding a migration script to preserve the existing data in a temporary table, drop all records and then post deployment restore the records (perhaps leaving the new Rating column empty?) but it's simpler to just do *this* to resolve the issue:
+
+```truncate table movies.dbo.movie```
+
+### Trailing commas?
+
+This style seems odd in the example code, why have these trailing commas at the "end" of this new Movie?
+
+```
+new Movie
+{
+    Title = "Mad Max",
+    ReleaseDate = DateOnly.Parse("1979-4-12"),
+    Genre = "Sci-fi (Cyberpunk)",
+    Price = 2.51M,
++   Rating = "R", <---
+},
+```
+
+### Adding the Rating column exposes a limitation of the RegEx validation of the Title
+
+Adding the Rating column and attempting to save the record shows this error as ```Mad Max: Beyond Thunderdome``` violates the RegEx validation I added because of the colon character. It gives this error when attempting to save ```The field Title must match the regular expression '^[A-Z]+[a-zA-Z()\s-]*$'.```.
+
+The RegEx validation was removed for the Title column. Perhaps this is why it was never applied to the Title property in the first place?
+
+## Part 8 - Add interactivity
+
+https://learn.microsoft.com/en-gb/aspnet/core/blazor/tutorials/movie-database-app/part-8?view=aspnetcore-10.0&pivots=vs
+
+TBC
+
 ## TODO
 
 Validation of the Movie at both the model and database level: 
 
 - ~~Price should not be negative~~. Fixed by adding a Range Data Annotation -> https://stackoverflow.com/questions/20286290/dataannotation-for-checking-if-the-integer-is-not-a-negative-value
-- Prevent HTML and script tags, the website doesn't render this ```jhrejghrejhgrh<b>bold</b><html><script>alert('hello')</script></html>``` or display an alert box but better to stop it being input in the first place to prevent any complications with this text later.
+- Prevent HTML and script tags, the website doesn't render this ```jhrejghrejhgrh<b>bold</b><html><script>alert('hello')</script></html>``` or display an alert box but better to stop it being input in the first place to prevent any complications with this text later. Genre will prevent this but Title or Rating does not.
 
 Properly resolve the ```TrustServerCertificate=True``` issue, as this is only a development sandbox this is possibly a "fix never" issue or might be covered later in the Blazor training instructions.
+
+As there is a finite list of Rating entries, provide a drop down list instead of the user entering this manually. Create a new "Rating" table with all possible ratings.
 
 Multiple Genre for a Movie? Separate Combo Box with a list of existing Genre to choose from and the ability to ad-hoc create new ones. Update the Create and Edit pages to include this. New model and database table.
 
