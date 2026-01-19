@@ -12,6 +12,8 @@ There are some remarks in the Solution where things were changed from the sample
 
 https://learn.microsoft.com/en-gb/aspnet/core/blazor/tutorials/movie-database-app/part-2?view=aspnetcore-8.0&pivots=vs
 
+Note this part of the URL, it's not clear if there is a difference here but see a later URL which is linked in the later instructions where this is explicitly for .NET 10 rather than ```view=aspnetcore-8.0```
+
 ### Create the initial database schema using EF Core's migration feature failed?
 
 Something went wrong with the "Add Migration" of "InitialCreate" where it accepted the name and loaded the database context the first time, but suggested it needed a ```--force``` parameter to make the changes.
@@ -128,7 +130,11 @@ Something either in the VS IDE or one of the extensions I have installed isn't h
 
 ## TODO
 
-Properly resolve the ```TrustServerCertificate=True``` issue, as this is only a development sandbox this is possibly a "fix never" issue.
+Validation of the Movie at both the model and database level: Title should be 255 characters at most. ReleaseDate should be "sensible" ([Wikipedia History_of_film](https://en.wikipedia.org/wiki/History_of_film) suggests 1894 could be a minimum value). Genre should be 50 characters at most. Price should not be negative. Check we can't include HTML tags into text columns or carry out script injection when editing and creating.
+
+Properly resolve the ```TrustServerCertificate=True``` issue, as this is only a development sandbox this is possibly a "fix never" issue or might be covered later in the Blazor training instructions.
+
+Multiple Genre for a Movie? Separate Combo Box with a list of existing Genre to choose from and the ability to ad-hoc create new ones. Update the Create and Edit pages to include this. New model and database table.
 
 ## Original local DB connection string
 
