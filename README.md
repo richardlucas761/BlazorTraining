@@ -128,6 +128,20 @@ But this just creates a new Component which is perhaps more readable but it's st
 
 Something either in the VS IDE or one of the extensions I have installed isn't happy with this syntax, this suggested refactoring will be ignored.
 
+## Part 4 - Work with a database
+
+https://learn.microsoft.com/en-gb/aspnet/core/blazor/tutorials/movie-database-app/part-4?view=aspnetcore-10.0&pivots=vs
+
+### Don't use VARCHAR(MAX) for everything! 😊
+
+The suggested design uses VARCHAR(MAX) for the Title and Genre columns of the Movie database table.
+
+IMDB suggests the longest Movie title is around 200 characters.
+
+### Data/SeedData.cs suggests throwing a NullReferenceException
+
+The Sonar Qube VS Extension reminds us this is bad practice so this was corrected.
+
 ## TODO
 
 Validation of the Movie at both the model and database level: 

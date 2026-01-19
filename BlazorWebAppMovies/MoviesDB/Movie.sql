@@ -1,10 +1,11 @@
 ﻿CREATE TABLE [dbo].[Movie]
 (
-	[MovieId] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
-    [Title] NVARCHAR(255) NOT NULL DEFAULT(''), 
-    [ReleaseDate] DATE NOT NULL, 
-    [Genre] NVARCHAR(50) NOT NULL, 
-    [Price] DECIMAL(18, 2) NOT NULL
+	[MovieId]       INT IDENTITY(1,1)   NOT NULL, 
+    [Title]         NVARCHAR(255)       NOT NULL, 
+    [ReleaseDate]   DATE                NOT NULL, 
+    [Genre]         NVARCHAR(50)        NOT NULL, 
+    [Price]         DECIMAL(18, 2)      NOT NULL,
+    CONSTRAINT [PK_Movie] PRIMARY KEY CLUSTERED ([MovieId])
 )
 
 GO
