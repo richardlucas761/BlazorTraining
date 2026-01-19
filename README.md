@@ -170,6 +170,20 @@ public class Movie
 }
 ```
 
+## Part 6 - Add search
+
+https://learn.microsoft.com/en-gb/aspnet/core/blazor/tutorials/movie-database-app/part-6?view=aspnetcore-10.0&pivots=vs
+
+### SQL Injection is prevented by something?
+
+Specifying this query string does not result in the Movie table being truncated in the database which is good, but *what* is stopping this?
+
+```https://localhost:7035/movies?titleFilter=%3Btruncate+table+movie%3B```
+
+A search of:
+
+```;truncate table movie;```
+
 ## TODO
 
 Validation of the Movie at both the model and database level: 
@@ -180,6 +194,8 @@ Validation of the Movie at both the model and database level:
 Properly resolve the ```TrustServerCertificate=True``` issue, as this is only a development sandbox this is possibly a "fix never" issue or might be covered later in the Blazor training instructions.
 
 Multiple Genre for a Movie? Separate Combo Box with a list of existing Genre to choose from and the ability to ad-hoc create new ones. Update the Create and Edit pages to include this. New model and database table.
+
+SQL Injection is prevented by *something*, perhaps it's "good enough" that it's prevented? Curious what is stopping this.
 
 ## Original local DB connection string
 
