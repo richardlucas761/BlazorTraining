@@ -8,7 +8,7 @@ https://dotnet.microsoft.com/en-us/learn/aspnet/blazor-tutorial/intro
 
 There are some remarks in the Solution where things were changed from the sample code and longer form comments about the sample code and issues found here.
 
-## Part Two
+## Part 2 - Add and scaffold a model
 
 https://learn.microsoft.com/en-gb/aspnet/core/blazor/tutorials/movie-database-app/part-2?view=aspnetcore-8.0&pivots=vs
 
@@ -64,6 +64,52 @@ Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, b
 This offers a temporary solution of adding ```TrustServerCertificate=True``` to the connection string.
 
 https://stackoverflow.com/questions/17615260/the-certificate-chain-was-issued-by-an-authority-that-is-not-trusted-when-conn
+
+## Part 3 - Learn about Razor components
+
+https://learn.microsoft.com/en-gb/aspnet/core/blazor/tutorials/movie-database-app/part-3?view=aspnetcore-8.0&pivots=vs
+
+And there is a .NET Core 10 version of this page here I should have been following, did I miss something else in an earlier page?
+
+https://learn.microsoft.com/en-gb/aspnet/core/blazor/tutorials/movie-database-app/part-3?view=aspnetcore-10.0&pivots=vs&preserve-view=true#details-component
+
+### Example code doesn't include the "counter" page in the sample code
+
+A very minor observation, replacing the code in ```Components/Layout/NavMenu.razor``` with this from the page linked would remove the navigation link to the counter page?
+
+```
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Sci-fi Movies</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="movies">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Movies
+            </NavLink>
+        </div>
+    </nav>
+</div>
+```
+
+
 
 ## TODO
 
