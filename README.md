@@ -109,7 +109,22 @@ A very minor observation, replacing the code in ```Components/Layout/NavMenu.raz
 </div>
 ```
 
+### Suggested refactoring on the Delete page is not valid
 
+This part of the sample code ```disabled="@(movie is null)"``` had a suggested refactoring.
+
+```
+        <EditForm method="post" Model="movie" OnValidSubmit="DeleteMovie" FormName="delete" Enhance>
+            <button type="submit" class="btn btn-danger" disabled="@(movie is null)">Delete</button> |
+            <a href="/movies">Back to List</a>
+        </EditForm>
+```
+
+But this just creates a new Component which is perhaps more readable but it's still complaining about the 'disabled' attribute.
+
+![alt text](Images/InvalidRefactoring.png "Invalid Refactoring")
+
+Something either in the VS IDE or one of the extensions I have installed isn't happy with this syntax, this suggested refactoring will be ignored.
 
 ## TODO
 
