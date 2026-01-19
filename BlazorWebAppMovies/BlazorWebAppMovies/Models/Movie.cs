@@ -39,5 +39,6 @@ public class Movie
     /// </summary>
     [DataType(DataType.Currency)]
     [Column(TypeName = "decimal(18, 2)")]
+    [Range(0, double.MaxValue, ErrorMessage = "Value should be greater than or equal to 0")]
     public decimal Price { get; set; }
 }

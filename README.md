@@ -130,7 +130,10 @@ Something either in the VS IDE or one of the extensions I have installed isn't h
 
 ## TODO
 
-Validation of the Movie at both the model and database level: Title should be 255 characters at most. ReleaseDate should be "sensible" ([Wikipedia History_of_film](https://en.wikipedia.org/wiki/History_of_film) suggests 1894 could be a minimum value). Genre should be 50 characters at most. Price should not be negative. Check we can't include HTML tags into text columns or carry out script injection when editing and creating.
+Validation of the Movie at both the model and database level: 
+
+- ~~Price should not be negative~~. Fixed by adding a Range Data Annotation -> https://stackoverflow.com/questions/20286290/dataannotation-for-checking-if-the-integer-is-not-a-negative-value
+- Prevent HTML and script tags, the website doesn't render this ```jhrejghrejhgrh<b>bold</b><html><script>alert('hello')</script></html>``` or display an alert box but better to stop it being input in the first place to prevent any complications with this text later.
 
 Properly resolve the ```TrustServerCertificate=True``` issue, as this is only a development sandbox this is possibly a "fix never" issue or might be covered later in the Blazor training instructions.
 
