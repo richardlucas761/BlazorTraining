@@ -223,10 +223,6 @@ The RegEx validation was removed for the Title column. Perhaps this is why it wa
 
 https://learn.microsoft.com/en-gb/aspnet/core/blazor/tutorials/movie-database-app/part-8?view=aspnetcore-10.0&pivots=vs
 
-
-
-## TODO
-
 Validation of the Movie at both the model and database level: 
 
 - ~~Price should not be negative~~. Fixed by adding a Range Data Annotation -> https://stackoverflow.com/questions/20286290/dataannotation-for-checking-if-the-integer-is-not-a-negative-value
