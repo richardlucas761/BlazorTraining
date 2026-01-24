@@ -72,6 +72,30 @@ public static class SeedData
                 Genre = SciFiGenre,
                 Price = 13.49M,
                 Rating = "R"
+            },
+            new Movie
+            {
+                Title = "Encounter of the Spooky Kind",
+                ReleaseDate = new DateOnly(1980, 12, 24),
+                Genre = "Action",
+                Price = 15.50M,
+                Rating = "R"
+            },
+            new Movie
+            {
+                Title = "Blade Runner",
+                ReleaseDate = new DateOnly(1982, 9, 9),
+                Genre = SciFiGenre,
+                Price = 11.20M,
+                Rating = "R"
+            },
+            new Movie
+            {
+                Title = "Alien",
+                ReleaseDate = new DateOnly(1979,9,6),
+                Genre = SciFiGenre,
+                Price = 13.33M,
+                Rating = "R"
             });
 
         context.SaveChanges();

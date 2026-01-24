@@ -22,9 +22,9 @@
 <div>
     <QuickGrid Class="table" Items="FilteredMovies" Pagination="pagination">
         <PropertyColumn Property="movie => movie.Title" Sortable="true" />
-        <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
+        <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" Sortable="true" />
         <PropertyColumn Property="movie => movie.Genre" />
-        <PropertyColumn Property="movie => movie.Price" />
+        <PropertyColumn Property="movie => movie.Price" Sortable="true" />
         <PropertyColumn Property="movie => movie.Rating" />
 
         <TemplateColumn Context="movie">
@@ -40,7 +40,7 @@
 @code {
     private BlazorWebAppMoviesContext context = default!;
 
-    private readonly PaginationState pagination = new PaginationState { ItemsPerPage = 5 };
+    private readonly PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
 
     protected override void OnInitialized()
     {
