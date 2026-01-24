@@ -1,4 +1,5 @@
 ﻿@page "/movies"
+@rendermode InteractiveServer
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using BlazorWebAppMovies.Models
@@ -11,43 +12,45 @@
 <h1>Index</h1>
 
 <div>
-    <form action="/movies" data-enhance data-permanent>
-        <input type="search" name="titleFilter" />
-        <input type="submit" value="Search" />
-    </form>
+    <input type="search" @bind="titleFilter" @bind:event="oninput" />
 </div>
 
 <p>
     <a href="movies/create">Create New</a>
 </p>
 
-<QuickGrid Class="table" Items="FilteredMovies">
-    <PropertyColumn Property="movie => movie.Title" />
-    <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
-    <PropertyColumn Property="movie => movie.Genre" />
-    <PropertyColumn Property="movie => movie.Price" />
-    <PropertyColumn Property="movie => movie.Rating" />
+<div>
+    <QuickGrid Class="table" Items="FilteredMovies" Pagination="pagination">
+        <PropertyColumn Property="movie => movie.Title" Sortable="true" />
+        <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
+        <PropertyColumn Property="movie => movie.Genre" />
+        <PropertyColumn Property="movie => movie.Price" />
+        <PropertyColumn Property="movie => movie.Rating" />
 
-    <TemplateColumn Context="movie">
-        <a href="@($"movies/edit?movieid={movie.MovieId}")">Edit</a> |
-        <a href="@($"movies/details?movieid={movie.MovieId}")">Details</a> |
-        <a href="@($"movies/delete?movieid={movie.MovieId}")">Delete</a>
-    </TemplateColumn>
-</QuickGrid>
+        <TemplateColumn Context="movie">
+            <a href="@($"movies/edit?movieid={movie.MovieId}")">Edit</a> |
+            <a href="@($"movies/details?movieid={movie.MovieId}")">Details</a> |
+            <a href="@($"movies/delete?movieid={movie.MovieId}")">Delete</a>
+        </TemplateColumn>
+    </QuickGrid>
+</div>
+
+<Paginator State="pagination" />
 
 @code {
     private BlazorWebAppMoviesContext context = default!;
+
+    private readonly PaginationState pagination = new PaginationState { ItemsPerPage = 5 };
 
     protected override void OnInitialized()
     {
         context = DbFactory.CreateDbContext();
     }
 
-    [SupplyParameterFromQuery]
-    private string? TitleFilter { get; set; }
+    private string titleFilter = string.Empty;
 
     private IQueryable<Movie> FilteredMovies =>
-        context.Movie.Where(m => m.Title!.Contains(TitleFilter ?? string.Empty));
+        context.Movie.Where(m => m.Title!.Contains(titleFilter));
 
     public async ValueTask DisposeAsync() => await context.DisposeAsync();
 }

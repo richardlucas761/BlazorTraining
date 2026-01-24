@@ -223,7 +223,7 @@ The RegEx validation was removed for the Title column. Perhaps this is why it wa
 
 https://learn.microsoft.com/en-gb/aspnet/core/blazor/tutorials/movie-database-app/part-8?view=aspnetcore-10.0&pivots=vs
 
-TBC
+
 
 ## TODO
 
